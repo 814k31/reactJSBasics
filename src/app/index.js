@@ -18,6 +18,7 @@ class App extends React.Component {
 	}
 
 	onChangeLinkName(newName) {
+		alert(newName);
 		this.setState({homeLink: newName});
 	}
 
@@ -40,8 +41,7 @@ class App extends React.Component {
 							initialAge={23}
 							user={user}
 							greet={this.onGreet}
-							changeLink={this.onChangeLinkName.bind(this)}
-							initialLinkName={this.state.homeLink}>
+							changeLink={this.onChangeLinkName.bind(this)}>
 							<p>This is a paragraph inside the home tag</p>
 						</Home>
 					</div>
