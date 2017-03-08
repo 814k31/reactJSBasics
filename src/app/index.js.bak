@@ -41,8 +41,7 @@ class App extends React.Component {
 							user={user}
 							greet={this.onGreet}
 							changeLink={this.onChangeLinkName.bind(this)}
-							initialLinkName={this.state.homeLink}
-						>
+							initialLinkName={this.state.homeLink}>
 							<p>This is a paragraph inside the home tag</p>
 						</Home>
 					</div>
@@ -52,9 +51,4 @@ class App extends React.Component {
 	}
 }
 
-App.propTypes = {
-	homeLink: React.PropTypes.string
-}
-
 render(<App/>, window.document.getElementById("app"));
-
