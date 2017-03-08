@@ -6,8 +6,7 @@ export const Header = (props) => {
 			<div className="container">
 				<div className="navbar-header">
 					<ul className="nav navbar-nav">
-						<li><a href="/home">Home</a></li>
-						<li><a href="/user">User</a></li>
+						<li><a href={props.homeLink}>{props.homeLink}</a></li>
 					</ul>
 				</div>
 			</div>
