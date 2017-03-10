@@ -1,8 +1,10 @@
 import React from "react";
 import {connect} from "react-redux";
 
-import {Main} from "./Main";
-import {User} from "./User";
+import {Main} from "../components/Main";
+import {User} from "../components/User";
+
+import {setName} from "../actions/userActions";
 
 class App extends React.Component {
 	changeUsername(newName) {
@@ -11,11 +13,10 @@ class App extends React.Component {
 	}
 
 	render() {
-
 		var newName = "Anna";
 		return (
 			<div className="container">
-														{/*using bind here to test non es6 way of importing.*/}
+									{/*using bind here to test non es6 way of importing.*/}
 				<Main changeUsername={this.changeUsername.bind(this, newName)}/>
 				<User username={this.props.user.name}/>
 			</div>
@@ -34,12 +35,7 @@ const mapStateToProps = (state) => {
 //declares which actions are available to the App component
 const mapDispatchToProps = (dispatch) => {
 	return {
-		setName: (name) => {
-			dispatch({
-				type: "SET_NAME",
-				payload: name
-			});
-		}
+		setName: (name) => {dispatch(setName(name));}
 	};
 };
 
