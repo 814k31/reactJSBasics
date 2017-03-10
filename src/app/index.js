@@ -37,7 +37,12 @@ class App extends React.Component {
 
 render(<App/>, window.document.getElementById("app"));
 
-import {createStore, combineReducers} from "redux";
+
+
+//Redux stuff below!!
+
+import {createStore, combineReducers, applyMiddleware} from "redux";
+import logger from "redux-logger";
 
 const mathReducer = (state = {	//initialises state for the first time es6
 		result: 1,
@@ -61,7 +66,7 @@ const mathReducer = (state = {	//initialises state for the first time es6
 			break;
 	}
 	return state;
-}
+};
 
 const userReducer = (state = {	//initialises state for the first time es6
 		name: "Max",
@@ -83,11 +88,20 @@ const userReducer = (state = {	//initialises state for the first time es6
 			break;
 	}
 	return state;
-}
+};
 
+				//redux expects "3 functions". store next and action are all availble in the function body
+const myLogger = (store) => (next) => (action) => {
+	console.log("Logged Action: ", action);
+	next(action);
+};
 
-const store = createStore(combineReducers({mathReducer, userReducer}));
+const store = createStore(combineReducers(
+		{mathReducer, userReducer}),
+		{},
+		applyMiddleware(myLogger, logger())
+		);
 
 store.subscribe(() => {
-	console.log("Store updated!", store.getState());
+	//console.log("Store updated!", store.getState());
 });
